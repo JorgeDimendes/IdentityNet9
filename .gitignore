@@ -2,3 +2,6 @@
 bin/
 obj/
 *.user
+
+# Configurações locais
+appsettings.Development.json
