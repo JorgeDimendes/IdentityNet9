@@ -5,3 +5,4 @@ obj/
 
 # Configurações locais
 appsettings.Development.json
+IdentityNet9.Api/appsettings.Development.json
