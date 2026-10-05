@@ -1,6 +1,7 @@
 using IdentityNet9.Api.Data;
 using IdentityNet9.Api.Models;
 using IdentityNet9.Api.Services.Auth;
+using IdentityNet9.Api.Services.Email;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
     option.Password.RequireNonAlphanumeric = false;
     option.Password.RequireLowercase = false;
     option.Password.RequireUppercase = false;
+    //Deixar obrigatorio a confirmação do email
+    option.SignIn.RequireConfirmedEmail = true;
 }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 //Jwt
@@ -51,6 +54,10 @@ builder.Services.AddAuthentication(options =>
 
 //Services
 builder.Services.AddScoped<IAuthInterface, AuthService>();
+builder.Services.AddScoped<IEmailInterface, EmailService>();
+
+//EmailSettings - MailKit
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
 var app = builder.Build();
 

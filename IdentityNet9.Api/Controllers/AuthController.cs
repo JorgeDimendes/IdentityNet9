@@ -32,5 +32,32 @@ namespace IdentityNet9.Api.Controllers
 
             return Ok(resultado);
         }
+
+        [HttpGet("confirmar-email")]
+        public async Task<IActionResult> ConfirmarEmail(string userId, string token)
+        {
+            var resultado = await _authInterface.ConfirmarEmail(userId, token);
+            if (!resultado.Status) return BadRequest(resultado);
+
+            return Ok(resultado);
+        }
+
+        [HttpPost("esqueci-senha")]
+        public async Task<IActionResult> EsqueciSenha(EsqueciSenhaDto esqueciSenhaDto)
+        {
+            var resultado = await _authInterface.EsqueciSenha(esqueciSenhaDto);
+            if (!resultado.Status) return BadRequest(resultado);
+
+            return Ok(resultado);
+        }
+
+        [HttpPost("resetar-senha")]
+        public async Task<IActionResult> ResetarSenha(ResetarSenhaDto resetarSenhaDto)
+        {
+            var resultado = await _authInterface.ResetarSenha(resetarSenhaDto);
+            if (!resultado.Status) return BadRequest(resultado);
+
+            return Ok(resultado);
+        }
     }
 }
