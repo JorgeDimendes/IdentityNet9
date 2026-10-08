@@ -1,5 +1,6 @@
 using IdentityNet9.Api.Data;
 using IdentityNet9.Api.Models;
+using IdentityNet9.Api.Services.Admin;
 using IdentityNet9.Api.Services.Auth;
 using IdentityNet9.Api.Services.Email;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -55,6 +56,7 @@ builder.Services.AddAuthentication(options =>
 //Services
 builder.Services.AddScoped<IAuthInterface, AuthService>();
 builder.Services.AddScoped<IEmailInterface, EmailService>();
+builder.Services.AddScoped<IAdminInterface, AdminService>();
 
 //EmailSettings - MailKit
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
